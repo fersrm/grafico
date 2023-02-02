@@ -1,0 +1,44 @@
+@use 'sass:math';
+
+//funciones
+@function px-rem($px){
+    $rem: math.div($px,16) * 1rem;
+
+    @return $rem
+};
+
+// mixin
+@mixin flexbox($justificado,$alineado){
+    display: flex;
+    flex-wrap: wrap;
+    align-items: $alineado;
+    justify-content: $justificado;
+}
+
+@mixin bgImg($img,$size,$w,$h){
+    background-image:$img;
+    background-size:$size;
+    background-repeat: no-repeat;
+    width: px-rem($w);
+    height: px-rem($h);
+}
+@mixin contenedor_interior($colorBg,$colorLetra,$p,$br){
+    background-color: $colorBg;
+    padding: px-rem($p);
+    border-radius:px-rem($br); 
+    color: $colorLetra;  
+}
+
+@mixin contenedor($colorBg,$colorLetra){
+    @include contenedor_interior($colorBg,$colorLetra,16,10);  
+    box-shadow: 0 0 5px 0 rgba(151, 148, 148, 0.47);
+}
+
+@mixin after($w,$h,$bg,$posicion){
+    content: '';
+    width: $w;
+    height:px-rem($h);
+    background-color: $bg;
+    display: block;
+    position: $posicion;
+}

@@ -1,0 +1,121 @@
+@use 'mixins';
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+
+$Soft_red: #ec775f;
+$Cyan: #76b5bc;
+$Dark_brown: #382314;
+$Medium_brown: #93867b;
+$Cream: #f8e9dd;
+$Very_pale_orange: #fffaf5;
+
+body{
+    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    background-color: $Cream;
+    @include mixins.flexbox(center,center);
+    min-height:100vh ;
+    margin: 0;
+    padding: 0;
+}
+.contenedor{
+    width: 90%;
+    max-width: mixins.px-rem(400);
+}
+.encabezado{
+    @include mixins.contenedor($Soft_red,$Very_pale_orange);
+    @include mixins.flexbox(space-between,center);
+    .info{
+        @include mixins.flexbox(start,center);
+        span{
+            margin-bottom: mixins.px-rem(5);
+            font-size:mixins.px-rem(14);
+        }
+        strong{
+            width: 100%;
+            font-size:mixins.px-rem(24);
+        }
+    }
+    .logo{
+        @include mixins.bgImg(url(images/logo.svg),contain,55,45);
+    }
+}
+.carta{
+    margin-top: mixins.px-rem(16);
+    @include mixins.contenedor($Very_pale_orange,$Dark_brown);
+    p{
+        font-weight:700;
+        font-size: mixins.px-rem(25);
+        margin: 0;
+    }
+    .contenedor_grafico{
+        margin:mixins.px-rem(25) 0;
+        position: relative;
+        @include mixins.flexbox(space-between,end);
+        padding-bottom: mixins.px-rem(75);
+        &::after{
+           @include mixins.after(100%,1,$Medium_brown,absolute);
+            bottom: 0;
+        }
+    }
+    .datos{
+        @include mixins.flexbox(space-between,center);
+        span{
+            color: $Medium_brown;
+            display: block;
+        }
+       .este_mes strong{
+        font-size:mixins.px-rem(35);
+       } 
+       .mes_anterior{
+            text-align:end ;
+       }
+    
+    }
+}
+
+//--------------------------------
+.contenedor_barra{
+    text-align: center;
+    width: mixins.px-rem(40);
+    height:mixins.px-rem(220);
+    @include mixins.flexbox(center,end);
+    .valor{
+        @include mixins.contenedor_interior($Dark_brown,$Very_pale_orange,5,5);
+        position: relative;
+        font-size: 12px;
+        margin-bottom: mixins.px-rem(4);
+        opacity: 0;
+    }
+    .barra{
+        background-color: $Soft_red;
+        height:100%;
+        width: mixins.px-rem(35);
+        border-radius: mixins.px-rem(4);
+        position: relative;
+        cursor: pointer;
+        &:hover{
+            background-color: #ec9c8c;
+        }
+       
+    }
+    .barra.max{
+        background-color: $Cyan;
+        &:hover{
+            background-color: #9bcbd1;
+        }
+    }
+
+    .dia{
+        color: $Medium_brown;
+        font-size:mixins.px-rem(13);
+    }
+}
+
+footer{
+    width: 100%;
+    .attribution { 
+                font-size: 11px; text-align: center; 
+                a { color: hsl(228, 45%, 44%); }
+    }   
+}
